@@ -27,17 +27,30 @@
                     <p>Laporan Keuangan</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="{{ url('/kelola-keuangan') }}" class="nav-link">
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-money-check-alt"></i>
-                    <p>Kelola Keuangan</p>
+                    <p>
+                        Kelola Keuangan
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
                 </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ url('/kelola-iuran') }}" class="nav-link">
-                    <i class="nav-icon fas fa-coins"></i>
-                    <p>Kelola Iuran</p>
-                </a>
+                <ul class="nav nav-treeview dropdown-menu-right">
+                    <li class="nav-item">
+                        <a href="{{ url('/kelola-keuangan') }}" class="nav-link">
+                            <ul>
+                                Keuangan RT
+                            </ul>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/kelola-keuangan') }}" class="nav-link">
+                            <ul>
+                                Keuangan RW
+                            </ul>
+                        </a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </nav>
