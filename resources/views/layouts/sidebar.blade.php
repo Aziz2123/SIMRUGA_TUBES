@@ -13,7 +13,7 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Menambahkan menu untuk bendahara -->
+            <!-- Menu Bendahara -->
             <li class="nav-item">
                 <a href="{{ url('/') }}" class="nav-link {{ ($activeMenu == 'dashboard')? 'active' : '' }}">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
