@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name', 'SIMRUGA') }}</title>
+    <title>{{ isset($title) ? $title . " - " . config('app.name', 'SIMRUGA') : config('app.name', 'SIMRUGA') }}</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}"> <!-- untuk mengirimkan token laravel CSRF pada setiap request ajax -->
 
@@ -47,7 +47,9 @@
 
     <!-- Main content -->
     <section class="content">
+      <div class="container-fluid">
         @yield('content')
+      </div>
     </section>
     <!-- /.content -->
   </div>
