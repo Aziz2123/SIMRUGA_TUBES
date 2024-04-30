@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BendaharaController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ArsipansuratController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,3 +48,16 @@ Route::prefix('bendahara')->group(function () {
     Route::put('/{id}', [BendaharaController::class, 'update']);
     Route::delete('/{id}', [BendaharaController::class, 'destroy']);
 });
+
+
+Route::resource('arsipansurat', ArsipansuratController::class)
+    ->parameters(['arsipansurat' => 'arsipanSurat'])
+    ->except(['show'])
+    ->names([
+    'index' => 'arsipansurat.index',
+    'create' => 'arsipansurat.create',
+    'store' => 'arsipansurat.store',
+    'edit' => 'arsipansurat.edit',
+    'update' => 'arsipansurat.update',
+    'destroy' => 'arsipansurat.destroy'
+    ]);
