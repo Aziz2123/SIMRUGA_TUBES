@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BendaharaController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ArsipansuratController;
@@ -17,26 +18,30 @@ use App\Http\Controllers\ArsipansuratController;
 |
 */
 
-Route::get('/', function () {
-    return view('login');
-});
+// Autentikasi
+// Route::get('/', function () {
+//     return view('login');
+// });
 
-Route::get('login', [AuthController::class, 'index'])->name('login');
-Route::get('register', [AuthController::class, 'register'])->name('register');
-Route::post('proses_login', [AuthController::class, 'proses_login'])->name('proses_login');
-Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-Route::post('proses_register', [AuthController::class, 'proses_register'])->name('proses_register');
+// Route::get('login', [AuthController::class, 'index'])->name('login');
+// Route::get('register', [AuthController::class, 'register'])->name('register');
+// Route::post('proses_login', [AuthController::class, 'proses_login'])->name('proses_login');
+// Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+// Route::post('proses_register', [AuthController::class, 'proses_register'])->name('proses_register');
 
-// kita atur juga untuk middleware menggunakan group pada routing
-// didalamnya terdapat group untuk mengecek kondisi login
-// jika user yang login merupakan admin maka akan diarahkan ke AdminController
-// jika user yang login merupakan manager maka akan diarahkan ke UserController 
+// // kita atur juga untuk middleware menggunakan group pada routing
+// // didalamnya terdapat group untuk mengecek kondisi login
+// // jika user yang login merupakan admin maka akan diarahkan ke AdminController
+// // jika user yang login merupakan manager maka akan diarahkan ke UserController
 
-Route::group(['middleware' => ['auth']], function () {
-    Route::group(['middleware' => ['cek_login:1']], function () {
-        Route::resource('bendahara', BendaharaController::class);
-    });
-});
+// Route::group(['middleware' => ['auth']], function () {
+//     Route::group(['middleware' => ['cek_login:1']], function () {
+//         Route::resource('bendahara', BendaharaController::class);
+//     });
+// });
+
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'auth']);
 
 Route::prefix('bendahara')->group(function () {
     Route::get('/', [BendaharaController::class, 'index']);
@@ -61,3 +66,5 @@ Route::resource('arsipansurat', ArsipansuratController::class)
     'update' => 'arsipansurat.update',
     'destroy' => 'arsipansurat.destroy'
     ]);
+
+
