@@ -8,13 +8,11 @@ class BendaharaController extends Controller
 {
     public function index()
     {
-        $breadcrumb = (object)[
-            'title' => 'Selamat Datang',
-            'list' => ['Home', 'Welcome']
+        $data['title'] = 'Bendahara';
+        $data['breadcrumbs'] = [
+            ['label' => 'Dashboard', 'url' => '#'],
+            ['label' => 'Bendahara', 'url' => '#']
         ];
-
-        $activeMenu = 'dashboard';
-
-        return view('bendahara.index', ['breadcrumb'=> $breadcrumb, 'activeMenu' => $activeMenu]);
+        return view('bendahara.index', $data);
     }
 }

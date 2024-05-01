@@ -24,14 +24,34 @@ class UserSeeder extends Seeder
             ], [
                 'user_id' => 2,
                 'level_id' => 2,
-                'username' => 'manager',
-                'nama' => 'Manager',
+                'username' => 'ketuarw',
+                'nama' => 'Ketua RW',
                 'password' => Hash::make('12345'),
             ], [
                 'user_id' => 3,
                 'level_id' => 3,
-                'username' => 'staff',
-                'nama' => 'Staff',
+                'username' => 'sekretaris',
+                'nama' => 'Sekretaris RW',
+                'password' => Hash::make('12345'),
+            ],
+             [
+                'user_id' => 4,
+                'level_id' => 3,
+                'username' => 'bendahara',
+                'nama' => 'Bendahara RW',
+                'password' => Hash::make('12345'),
+            ],
+             [
+                'user_id' => 5,
+                'level_id' => 3,
+                'username' => 'ketuart',
+                'nama' => 'Ketua RT',
+                'password' => Hash::make('12345'),
+            ], [
+                'user_id' => 6,
+                'level_id' => 4,
+                'username' => 'warga',
+                'nama' => 'Warga',
                 'password' => Hash::make('12345'),
             ],
         ];
