@@ -41,7 +41,7 @@ use App\Http\Controllers\ArsipansuratController;
 // });
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class, 'auth']);
+Route::post('/login', [LoginController::class, 'authentication']);
 
 Route::prefix('bendahara')->group(function () {
     Route::get('/', [BendaharaController::class, 'index']);
@@ -52,7 +52,7 @@ Route::prefix('bendahara')->group(function () {
     Route::get('/{id}/edit', [BendaharaController::class, 'edit']);
     Route::put('/{id}', [BendaharaController::class, 'update']);
     Route::delete('/{id}', [BendaharaController::class, 'destroy']);
-});
+})->middleware('auth');
 
 
 Route::resource('arsipansurat', ArsipansuratController::class)
