@@ -138,5 +138,11 @@
                 <i class="fas fa-th-large"></i>
             </a>
         </li>
+        <!-- Logout Button -->
+        <li class="nav-item">
+            <a class="nav-link" href="logout.php" role="button">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </li>
     </ul>
 </nav>
