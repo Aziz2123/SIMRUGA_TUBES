@@ -1,100 +1,92 @@
-@extends('adminlte::auth.auth-page', ['auth_type' => 'login'])
+<!DOCTYPE html>
+<html lang="en">
 
-@section('adminlte_css_pre')
-    <link rel="stylesheet" href="{{ asset('vendor/check-bootstrap/fcheck-bootstrap.min.css') }}">
-@stop
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="BfOHsHabTOuHYz1R4LWu6ex7eD5lepYBNiHSfgYn">
+    <title>SIMRUGA</title>
 
-@php($login_url = View::getSection('login_url') ?? config('adminlte.login_url', 'login'))
-@php($register_url = View::getSection('register_url') ?? config('adminlte.register_url', 'register'))
-@php($password_reset_url = view::getSection('password_reset_url') ?? config('adminlte.password_reset_url', 'password/reset'))
+    <link rel="stylesheet" href="http://127.0.0.1:8000/vendor/check-bootstrap/fcheck-bootstrap.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/vendor/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/vendor/adminlte/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-@if (config('adminlte.use_route_url', false))
-    @php($login_url = $login_url ? route($login_url) : '')
-    @php($register_url = $register_url ? route($register_url) : '')
-    @php($password_reset_url = $password_reset_url ? route($password_reset_url) : '')
-@else
-    @php($login_url = $login_url ? url($login_url) : '').
-    @php($register_url = $register_url ? url($register_url) : '')
-    @php($password_reset_url = $password_reset_url ? url($password_reset_url) : '')
-@endif
+    <style>
+        /* CSS untuk mengganti warna background */
+        body.login-page {
+            background-color:#EBF5FB ; /* Ganti dengan warna background yang diinginkan */
+        }
+    </style>
+</head>
 
-
-@section('auth_header', __('adminlte::adminlte.login_message'))
-
-@section('auth_body')
-    @error('login_failed')
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <span class="alert-inner--text"><strong>Warning:</strong> {{ $message }}</span>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+<body class="login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <img src="http://127.0.0.1:8000/adminlte/dist/img/simruga.png" alt="Admin Logo" style="border-radius: 50%; height: 50px; width: 75px">
+            <b>SIMRUGA</b>
         </div>
-    @enderror
-
-    <form action="{{ url('proses_login') }}" method="post">
-        @csrf
-
-        {{-- Email field --}}
-        <div class="input-group mb-3">
-            <input type="text" name="username" class="form-control @error('username') is-invalid @enderror"
-                value="{{ old('username') }}" placeholder="Username" autofocus>
-            <div class="input-group-append">
-                <div class="input-group-text">
-                    <span class="fa fa-envelope {{ config('adminlte.classes_auth_icon', '') }}"></span>
-                </div>
-            </div>
-            @error('username')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div>
-
-        {{-- Password field --}}
-        <div class="input-group mb-3">
-            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
-                placeholder="{{ __('adminlte::adminlte.password') }}">
-            <div class="input-group-append">
-                <div class="input-group-text">
-                    <span class="fa fa-lock {{ config('adminlte.classes_auth_icon', '') }}"></span>
-                </div>
-            </div>
-            @error('password')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div>
-
-        {{-- Login field --}}
-        <div class="row">
-            <div class="col-7">
-                <div class="icheck-primary" title="{{ __('adminlte::adminlte.remember_me_hint') }}">
-                    <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                    <label for="remember">
-                        {{ __('adminlte::adminlte.remember_me') }}
-                    </label>
-                </div>
+        
+        <div class="card card-outline card-primary">
+            <!-- Gambar yang ditambahkan -->
+            <div class="login-img">
+                <img src="http://127.0.0.1:8000/vendor/adminlte/dist/img/login.png" alt="Background Image" style="max-width: 100%;">
             </div>
 
-            <div class="col-5">
-                <button type=submit class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
+            <div class="card-header">
+                <h3 class="card-title float-none text-center">Login Menggunakan Nama & Password</h3>
+            </div>
 
-                    <span class="fa fa-sign-in-alt"></span>
-                    {{ __('adminlte::adminlte.sign_in') }}
-                </button>
+            <div class="card-body login-card-body">
+                <form action="http://127.0.0.1:8000/proses_login" method="post">
+                    <input type="hidden" name="_token" value="BfOHsHabTOuHYz1R4LWu6ex7eD5lepYBNiHSfgYn" autocomplete="off">
+
+                    <div class="input-group mb-3">
+                        <input type="text" name="username" class="form-control" value="" placeholder="Username" autofocus>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fa fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="password" name="password" class="form-control" placeholder="Password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fa fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-7">
+                            <div class="icheck-primary" title="Keep me authenticated indefinitely or until I manually logout">
+                                <input type="checkbox" name="remember" id="remember">
+                                <label for="remember">Remember Me</label>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <button type=submit class="btn btn-block btn-flat btn-primary">
+                                <span class="fa fa-sign-in-alt"></span>
+                                Sign In
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card-footer">
+                <p class="my-0">
+                    <a href="http://127.0.0.1:8000/register">Register a new membership</a>
+                </p>
             </div>
         </div>
-    </form>
-@stop
+    </div>
 
-@section('auth_footer')
-    @if ($register_url)
-        <p class="my-0">
-            <a href="{{ route('register') }}">
-                {{ __('adminlte::adminlte.register_a_new_membership') }}
-            </a>
-        </p>
-    @endif
-@stop
+    <script src="http://127.0.0.1:8000/vendor/jquery/jquery.min.js"></script>
+    <script src="http://127.0.0.1:8000/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="http://127.0.0.1:8000/vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <script src="http://127.0.0.1:8000/vendor
